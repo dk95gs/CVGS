@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CVGS.Models.WishLists>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.otherMemberName == null)
+{
+    <div class="jumbotron text-center header">
+        <h1 class="display-4 header-text">Your Wish List Total: $@ViewBag.totalWishList</h1>
+    </div>
+}
+else
+{
+    <div class="jumbotron text-center header">
+        <h1 class="display-4 header-text">Wish List of @ViewBag.otherMemberName</h1>
+        <h2 class="display-4 header-text">Total: $@ViewBag.totalWishList</h2>
+    </div>
+}
+
+
+<div class="my-container text-center">
+
+    @foreach (var item in Model)
+    {
+
+        <div class="card moveInLeftEffect" style="width: 18rem; margin-bottom:2rem;">
+            <img class="card-img-top" src="@Html.DisplayFor(m => item.Games.GameLink)" alt="Card image cap">
+            <div class="card-body" style="position:relative">
+                <h5 class="card-title">@Html.DisplayFor(m => item.Games.Title)</h5>
+                <p class="card-text">@Html.DisplayFor(m => item.Games.Description)</p>
+                <p class="card-text">Rating: @Html.DisplayFor(m => item.Games.Rating)/5</p>
+                <p class="card-text">$@Html.DisplayFor(m => item.Games.Price)</p>
+                <a style="margin-bottom:.5rem" asp-controller="StoreFront" asp-action="GameDetails" asp-route-Id="@item.Games.Id" class="btn btn-primary">Details</a>
+                <a style="margin-bottom:.5rem" asp-controller="WishLists" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger">Delete</a>
+                @if (ViewBag.otherMemberName != null)
+                {
+                    <a style="margin-bottom:.5rem" asp-controller="Carts" asp-action="AddToFriendCart" asp-route-gameId="@item.Games.Id" asp-route-userId="@item.ApplicationUserId" class="btn btn-secondary">Add to Cart</a>
+                }
+                </div>
+        </div>
+
+    }
+
+</div>

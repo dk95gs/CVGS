@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CVGS.Models.CreditCards>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-12 text-center">
+        <h2>Your Credit Cards</h2>
+        @ViewBag.test
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border moveInLeftEffect">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th>
+                Experation Date
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Last4Digits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Address)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.ExpirationMonth)/@Html.DisplayFor(m => item.ExpirationYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Last4Digits)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Address)
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-area="Customer" asp-controller="CreditCards" asp-action="Index" asp-route-id="@item.Id" >Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>

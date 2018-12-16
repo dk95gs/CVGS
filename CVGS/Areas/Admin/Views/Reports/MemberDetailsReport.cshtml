@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CVGS.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ReportLayout.cshtml";
+}
+<h1>Member Details Report</h1>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped border">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.UserName)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.UserName)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.FirstName)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.FirstName)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.LastName)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.LastName)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Gender)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.Gender)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.BirthDate)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.BirthDate)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Role)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.Role)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.isReceivePromotionalEmails)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.isReceivePromotionalEmails)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

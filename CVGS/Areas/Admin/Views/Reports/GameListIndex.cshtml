@@ -1,0 +1,107 @@
+﻿@model PagedList.Core.IPagedList<Games>
+@addTagHelper *, PagedList.Core.Mvc
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+
+    <div class="col-4 text-center">
+        <form enctype="multipart/form-data" method="post">
+            <select name="esrbRating" class="form-control">
+                <option value="Early Childhood">Early Childhood</option>
+                <option value="Everyone">Everyone</option>
+                <option value="Everyone 10+">Everyone 10+</option>
+                <option value="Teen">Teen</option>
+                <option value="Mature">Mature</option>
+                <option value="Rating Pending">Rating Pending</option>
+            </select>
+            <br />
+            <input type="submit" class="btn btn-primary" value="Select" />
+            <a asp-area="Admin" asp-controller="Reports" asp-action="GameListIndex" class="btn btn-primary">Reset</a>
+
+        </form>
+    </div>
+    <div class="col-4 text-center">
+        <h2>Game List Report</h2>
+    </div>
+    <div class="col-4 text-center">
+        <a asp-area="Admin" asp-controller="Reports" asp-action="GameListReport" asp-route-esrbRating="@ViewBag.esrbRating" class="btn btn-primary">Confirm Report</a>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-12">
+
+        <pager list="@Model"
+               asp-controller="Reports"
+               asp-action="GameListIndex" />
+
+        <table class="table table-striped border moveInLeftEffect">
+            <tr class="table-info">
+                <th>
+                    Title
+                </th>
+                <th>
+                    Genre
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Developer
+                </th>
+                <th>
+                    Publisher
+                </th>
+                <th>
+                    ESRB Rating
+                </th>
+                <th>
+                    Release Date
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Availability 
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Description)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(m => item.Developer)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Publisher)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.ESRB_Ratings)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Available)
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>
+

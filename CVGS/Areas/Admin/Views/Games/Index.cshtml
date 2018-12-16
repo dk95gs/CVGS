@@ -1,0 +1,99 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Games>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Manage Game List</h1>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <a class="btn btn-info" asp-area="Admin" asp-controller="Games" asp-action="Create">Add New Game  </a>
+    </div>
+</div>
+<br />
+<div>
+    <nav aria-label="Games Paging">
+        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+    </nav>
+    <table class="table table-striped border moveInLeftEffect">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Developer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Publisher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.ESRB_Ratings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.GameLink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Available)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Developer)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Publisher)
+            <td>
+                @Html.DisplayFor(m => item.ESRB_Ratings)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.GameLink)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.ExeLink)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Available)
+            </td>
+            <td>
+                <partial name="_TableButtonPartial" model="item.Id" />
+            </td>
+        </tr>
+        }
+    </table>
+    <vc:pager paging-list="@Model" />
+</div>

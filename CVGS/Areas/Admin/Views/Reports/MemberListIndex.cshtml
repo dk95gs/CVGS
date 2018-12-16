@@ -1,0 +1,79 @@
+﻿@model PagedList.Core.IPagedList<ApplicationUser>
+@addTagHelper *, PagedList.Core.Mvc
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+
+    <div class="col-4 text-center">
+        <form enctype="multipart/form-data" method="post">
+            <select name="gender" class="form-control">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <br />
+            <input type="submit" class="btn btn-primary" value="Select" />
+            <a asp-area="Admin" asp-controller="Reports" asp-action="MemberListIndex" class="btn btn-primary" >Reset</a>
+
+        </form>
+    </div>
+    <div class="col-4 text-center">
+        <h2>Member List Report</h2>
+    </div>
+    <div class="col-4 text-center">
+        <a asp-area="Admin" asp-controller="Reports" asp-action="MemberListReport" asp-route-gender="@ViewBag.gender" class="btn btn-primary">Confirm Report</a>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-12">
+  
+        <pager list="@Model"
+                asp-controller="Reports"
+                asp-action="MemberListIndex" />
+     
+        <table class="table table-striped border moveInLeftEffect">
+            <tr class="table-info">
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Role
+                </th>
+                <th>
+                    Gender
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Email)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(m => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Gender)
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>
+

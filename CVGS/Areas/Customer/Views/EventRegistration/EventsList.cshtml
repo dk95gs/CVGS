@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CVGS.Models.Events>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Upcoming Events You Can Register For!</h1>
+
+</div>
+<br />
+<span>@ViewBag.registerMsg</span>
+<div>
+    <table class="table table-striped border moveInLeftEffect">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Details)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.StartingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.EndingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Location)
+            </th>
+            <th>
+            </th>
+            <th>
+
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Details)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.StartingTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.EndingTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Location)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-area="Customer" asp-controller="EventRegistration" asp-action="EventsList" asp-route-eventId="@item.Id">Register</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

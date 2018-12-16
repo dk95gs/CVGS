@@ -1,0 +1,77 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<EventRegistration>
+@using ReflectionIT.Mvc.Paging
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Events You Are Registered For</h1>
+
+</div>
+<br />
+<nav aria-label="EventRegistration Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+<span>@ViewBag.registerMsg</span>
+<div>
+    <table class="table table-striped border moveInLeftEffect">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.Events.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Events.Details)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Events.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Events.StartingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Events.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Events.EndingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Events.Location)
+            </th>
+            <th>
+            </th>
+            <th>
+
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Events.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Events.Details)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Events.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Events.StartingTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Events.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Events.EndingTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Events.Location)
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-area="Customer" asp-controller="EventRegistration" asp-action="Index" asp-route-Id="@item.Id">De-Register</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<vc:pager paging-list="@Model" />

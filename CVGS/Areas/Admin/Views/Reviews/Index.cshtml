@@ -1,0 +1,59 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Reviews>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Reviews Awaiting Approval</h1>
+
+</div>
+<br />
+<div>
+    <nav aria-label="Reviews Paging">
+        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+    </nav>
+    <table class="table table-striped border moveInLeftEffect">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Body)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.CreationDate)
+            </th>
+            <th>
+                User Name
+            </th>
+            <th>
+
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Body)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.ApplicationUser.UserName)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Reviews" asp-action="ApproveReview" asp-route-id="@item.Id">Approve/Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <vc:pager paging-list="@Model" />
+
+</div>

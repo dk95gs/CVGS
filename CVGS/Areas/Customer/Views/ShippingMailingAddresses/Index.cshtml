@@ -1,0 +1,71 @@
+﻿@model IEnumerable<CVGS.Models.ShippingMailingAddresses>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Your Mailing & Shipping Addresses</h1>
+</div>
+<a class="btn btn-primary" asp-area="Customer" asp-controller="ShippingMailingAddresses" asp-action="Create">Add New Address</a>
+<div>
+    <table class="table table-striped border moveInLeftEffect">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.StreetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.HouseNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Province)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.AddressType)
+            </th>
+            <th>
+            </th>
+            <th>
+
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.StreetName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.HouseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.PostalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Province)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.AddressType)
+            </td>
+            <td>
+                <a class="btn btn-danger" asp-area="Customer" asp-controller="ShippingMailingAddresses" asp-action="Delete" asp-route-Id="@item.Id">Delete</a>
+                <a class="btn btn-secondary" asp-area="Customer" asp-controller="ShippingMailingAddresses" asp-action="Edit" asp-route-Id="@item.Id">Edit</a>
+            </td>
+        </tr>
+        }
+    </table>
+</div>

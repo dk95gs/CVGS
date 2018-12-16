@@ -1,0 +1,22 @@
+﻿@model IEnumerable<CVGS.Models.Reviews>
+@{
+    ViewData["Title"] = "Reviews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reviews for @ViewBag.gameName</h2>
+<a asp-controller="StoreFront" asp-action="Index" class="btn btn-primary">Back to Store</a>
+@foreach (var item in Model)
+{
+<div class="jumbotron">
+    <h4 class="display-4">@item.Title</h4>
+    <h5>Author: @item.ApplicationUser.UserName</h5>
+    <p>@item.Body</p>
+    @if (User.Identity.Name == item.ApplicationUser.UserName)
+    {
+        <a class="btn btn-primary" asp-route-id="@item.Id" asp-controller="StoreFront" asp-action="EditReview">Edit Your Review</a>
+    }
+
+</div>
+}
+

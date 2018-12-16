@@ -1,0 +1,48 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<ApplicationUser>
+@using Microsoft.AspNetCore.Http
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Site Members</h1>
+    <h2>@ViewBag.friendMessage</h2>
+
+</div>
+<form asp-controller="Members" asp-action="Index" method="get">
+    <label>Search for a member: </label>
+    <input type="text" class="form-control " name="userName" value="" />
+    <input style="margin:.5rem 0 .5rem 0" class="btn btn-primary" type="submit" name="submit" value="Search" />
+</form>
+
+<nav aria-label="ApplicationUser Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+<div class="container text-center">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            @if (item.UserName != User.Identity.Name && item.Role != "Super Admin")
+            {
+                @if (item.Role != "Employee")
+                {
+                    <div class="col-4">
+                        <div class="my-card" style="width: 18rem;">
+
+                            <h5 class="card-title">@item.UserName</h5>
+
+                            <a asp-area="Customer" asp-route-id="@item.Id" asp-controller="Members" asp-action="Details" class="btn btn-primary">Details</a>
+                            <a asp-area="Customer" asp-route-id="@item.Id" asp-controller="FriendsFamilyLists" asp-action="Add" class="btn btn-primary">Add Friend</a>
+
+                        </div>
+                    </div>
+                }
+
+            }
+        }
+    </div>
+    <vc:pager paging-list="@Model" />
+</div>

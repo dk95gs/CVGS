@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CVGS.Models.Games>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Your Games</h1>
+</div>
+<table class="table table-striped border moveInLeftEffect">
+    <tr class="table-info">
+        <th>
+            @Html.DisplayNameFor(m => m.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.ESRB_Ratings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Developer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Publisher)
+        </th>
+        
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.ESRB_Ratings)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Developer)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Publisher)
+            </td>
+            <td>
+                <a asp-area="Customer" asp-controller="OwnedGames" asp-action="Download" asp-route-filename="@item.ExeLink">Download</a>
+            </td>
+        </tr>
+    }
+</table>

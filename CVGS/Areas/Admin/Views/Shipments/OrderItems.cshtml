@@ -1,0 +1,42 @@
+﻿@model List<CVGS.Models.Games>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Order Items</h1>
+</div>
+<div class="row">
+    <div class="col-12">
+
+        <table class="table table-striped border moveInLeftEffect">
+            <tr class="table-info">
+                <th>
+                    Title
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                   Genre
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Genre)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

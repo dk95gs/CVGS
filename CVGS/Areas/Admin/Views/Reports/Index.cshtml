@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Select a Report</h1>
+
+</div>
+<div class="row">
+    <div class="col-12 text-center">
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Reports" asp-action="GameListIndex">Game List</a>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Reports" asp-action="GameDetailsIndex">Game Details</a>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Reports" asp-action="MemberListIndex">Member List</a>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Reports" asp-action="MemberDetailsIndex">Member Details</a>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Reports" asp-action="WishListsIndex">Wish List</a>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Reports" asp-action="SalesIndex">Sales</a>
+    </div>
+</div>

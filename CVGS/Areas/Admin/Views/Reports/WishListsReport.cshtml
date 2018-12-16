@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CVGS.Models.WishLists>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ReportLayout.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+        <h2>Wish List Report</h2>
+        <table class="table table-striped border moveInLeftEffect">
+            <tr class="table-info">
+                <th>
+                    User Nae
+                </th>
+                <th>
+                    Game Title
+                </th>
+                <th>
+                    Game Price
+                </th>
+                <th>
+                    Game Rating
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.ApplicationUser.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Games.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Games.Price)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(m => item.Games.Rating)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CVGS.Models.Games>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ReportLayout.cshtml";
+}
+<h1>Game Details Report</h1>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped border">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Title)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.Title)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Description)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.Description)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Publisher)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.Publisher)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.ESRB_Ratings)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.ESRB_Ratings)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.ReleaseDate)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.ReleaseDate)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Price)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.Price)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Available)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.Available)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

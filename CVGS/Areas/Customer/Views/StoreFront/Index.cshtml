@@ -1,0 +1,124 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Games>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Welcome to the Store!</h1>
+
+</div>
+<form asp-controller="StoreFront" asp-action="Index" method="get">
+    <label>Search for game: </label>
+    <input type="text" class="form-control " name="title" value="" />
+    <input style="margin:.5rem 0 .5rem 0" class="btn btn-primary" type="submit" name="submit" value="Search" />
+</form>
+<nav aria-label="Games Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+<div class="my-container text-center">
+
+
+    @foreach (var item in Model)
+    {
+
+            <div class="card moveInLeftEffect" style="width: 18rem; margin-bottom:2rem;">
+                <img class="card-img-top" src="@Html.DisplayFor(m => item.GameLink)" alt="Card image cap">
+                <div class="card-body" style="position:relative">
+                    <h5 class="card-title">@Html.DisplayFor(m => item.Title)</h5>
+                    <p class="card-text">@Html.DisplayFor(m => item.Description)</p>
+                    <p class="card-text">Rating: @Html.DisplayFor(m => item.Rating)/5</p>
+                    <p class="card-text">$@Html.DisplayFor(m => item.Price)</p>
+                    @if (User.IsInRole("Member") || User.IsInRole("Super Admin") || User.IsInRole("Employee"))
+                    {
+                        <div style="margin-bottom:1rem">
+                            <form asp-action="RateGame" asp-controller="StoreFront" asp-area="Customer" enctype="multipart/form-data" method="post">
+                                <input type="hidden" name="GameId" value="@item.Id" />
+                                <label>Rate the Game!</label>
+                                <select name="Rating">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <input type="submit" name="name" value="Rate Game!" />
+                            </form>
+                        </div>
+                    }
+                    <a style="margin-bottom:.5rem" asp-controller="StoreFront" asp-action="GameDetails" asp-route-Id="@item.Id" class="btn btn-primary">Details</a>
+                    <div class="btn-group" style="padding-bottom:.5rem;">
+                        <a asp-route-gameId="@item.Id" asp-route-gameName="@item.Title" asp-controller="StoreFront" asp-action="Reviews" class="btn btn-info">Reviews</a>
+                        @if (User.IsInRole("Member") || User.IsInRole("Super Admin") || User.IsInRole("Employee"))
+                        {
+
+
+                            <a asp-route-userName="@User.Identity.Name" asp-route-gameId="@item.Id" asp-route-gameName="@item.Title" asp-controller="StoreFront" asp-action="CreateReview" class="btn btn-warning">Add Review</a>
+                        }
+                    </div>
+                    @if (User.IsInRole("Member"))
+                    {
+                        <div class="btn-group">
+                            <a asp-controller="WishLists" asp-action="Add" asp-route-Id="@item.Id" class="btn btn-primary">Add to Wish List</a>
+                            <a asp-controller="Carts" asp-action="Add" asp-route-Id="@item.Id" class="btn btn-success">Add to Cart</a>
+
+                        </div>
+                    }
+                </div>
+            </div>
+
+        <!--
+            <div class="my-card" style="width: 18rem; margin-bottom: 2rem;">
+            <div class="card-side front">
+                <h5 class="card-title"> @Html.DisplayFor(m => item.Title) </h5>
+                <img class="card-img-top rounded-circle" style="height:250px;width:250px" src="@Html.DisplayFor(m => item.GameLink)" alt="Card image cap">
+
+            </div>
+            <div class="card-side back ">
+                <h5 style="color:black">@Html.DisplayFor(m => item.Title)</h5>
+                <h5>Rating: @Html.DisplayFor(m => item.Rating)/5</h5>
+                <h5>$@Html.DisplayFor(m => item.Price)</h5>
+                <label>Genre: @Html.DisplayFor(m => item.Genre)</label>
+
+                <label>ESRB Rating: @Html.DisplayFor(m => item.ESRB_Ratings)</label>
+                <label> Release Date: @Html.DisplayFor(m => item.ReleaseDate)</label>
+
+                <form asp-action="RateGame" asp-controller="StoreFront" asp-area="Customer" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="GameId" value="@item.Id" />
+                    <label>Rate the Game!</label>
+                    <select name="Rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input type="submit" name="name" value="Rate Game!" />
+                </form>
+                <br />
+                <a style="margin-bottom:1rem" class="btn btn-dark">Details</a>
+                <div style="padding-bottom:.5rem">
+
+                    <a asp-route-gameId="@item.Id" asp-route-gameName="@item.Title" asp-controller="StoreFront" asp-action="Reviews" class="btn btn-info">Reviews</a>
+                    @if (User.IsInRole("Member") || User.IsInRole("Super Admin") || User.IsInRole("Employee"))
+                    {
+                        <a asp-route-userName="@User.Identity.Name" asp-route-gameId="@item.Id" asp-route-gameName="@item.Title" asp-controller="StoreFront" asp-action="CreateReview" class="btn btn-warning">Add Review</a>
+                    }
+                </div>
+                @if (User.IsInRole("Member"))
+                {
+                    <div>
+                        <a class="btn btn-primary">Add to Wish List</a>
+                        <a class="btn btn-success">Add to Cart</a>
+
+                    </div>
+                }
+            </div>
+        </div>
+        -->
+
+    }
+
+</div>
+<vc:pager paging-list="@Model" />

@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Http
+@model CVGS.Models.Reviews
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Adding Review</h2>
+
+<form enctype="multipart/form-data" method="post">
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Title"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="Title" class="form-control" />
+        </div>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Body"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="Body" class="form-control" />
+        </div>
+        <span asp-validation-for="Body" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="isApproved" value="false" class="form-control" />
+    @if (ViewBag.gameId != null)
+    {
+        <input type="hidden" asp-for="GameId" value="@ViewBag.gameId" class="form-control" />
+    }
+    else
+    {
+        <input type="hidden" asp-for="GameId" class="form-control" />
+    }
+    @if (ViewBag.userId != null)
+    {
+        <input type="hidden" asp-for="ApplicationUserId" value="@ViewBag.userId" class="form-control" />
+    }
+    else
+    {
+        <input type="hidden" asp-for="ApplicationUserId" class="form-control" />
+    }
+
+
+    <br />
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Create" />
+    </div>
+</form>
+

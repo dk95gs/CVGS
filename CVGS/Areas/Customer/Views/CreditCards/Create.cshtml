@@ -1,0 +1,98 @@
+﻿@model CVGS.Models.CreditCards
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add New Credit Card</h2>
+<form enctype="multipart/form-data" method="post">
+    <input hidden asp-for="ApplicationUserId" value="temp" class="form-control" />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Name"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Address"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="Address" class="form-control" />
+        </div>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="CreditCardNumberHash"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="CreditCardNumberHash" class="form-control" />
+        </div>
+        <span asp-validation-for="CreditCardNumberHash" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="CVVHash"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="CVVHash" class="form-control" />
+        </div>
+        <span asp-validation-for="CVVHash" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label hidden asp-for="ExpirationMonth"></label>
+            <label hidden asp-for="ExpirationYear"></label>
+            <label>Experation Date</label>
+        </div>
+        <div class="col-5">
+            <div class="row">
+                <div class="col-1">
+                    Month
+                </div>
+                <div class="col-2">
+                    <select asp-for="ExpirationMonth" class="form-control">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="11">11</option>
+                    </select>
+
+                </div>
+                <div class="col-1">
+                    Year
+                </div>
+                <div class="col-2">
+                    <select asp-for="ExpirationYear" class="form-control">
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Create" />
+    </div>
+</form>
+

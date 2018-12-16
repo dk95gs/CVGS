@@ -1,0 +1,156 @@
+﻿@model CVGS.Models.Games
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Game</h2>
+
+<form enctype="multipart/form-data" method="post">
+    <input hidden asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row">
+
+
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Title"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Title" class="form-control" />
+                </div>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Genre"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Genre" class="form-control" />
+                </div>
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Description"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Description" class="form-control" />
+                </div>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Developer"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Developer" class="form-control" />
+                </div>
+                <span asp-validation-for="Developer" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Publisher"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Publisher" class="form-control" />
+                </div>
+                <span asp-validation-for="Publisher" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ESRB_Ratings"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="ESRB_Ratings" class="form-control">
+                        <option value="Early Childhood">Early Childhood</option>
+                        <option value="Everyone">Everyone</option>
+                        <option value="Everyone 10+">Everyone 10+</option>
+                        <option value="Teen">Teen</option>
+                        <option value="Mature">Mature</option>
+                        <option value="Rating Pending">Rating Pending</option>
+                    </select>
+                </div>
+                <span asp-validation-for="ESRB_Ratings" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ReleaseDate"></label>
+                </div>
+                <div class="col-8">
+                    <input type="date" asp-for="ReleaseDate" class="form-control" />
+                </div>
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Price"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Price" class="form-control" />
+                </div>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label> Upload Cover Picture</label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="GamePic" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="isDownloadable"></label>
+                </div>
+                <div class="col-8">
+                    <input type="checkbox" asp-for="isDownloadable" class="form-control" />
+                </div>
+                <span asp-validation-for="isDownloadable" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="isFree"></label>
+                </div>
+                <div class="col-8">
+                    <input type="checkbox" asp-for="isFree" class="form-control" />
+                </div>
+                <span asp-validation-for="isFree" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label> Upload Game Executable</label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="GameExe" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Available"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="Available" class="form-control">
+                        <option value="Available">Available</option>
+                        <option value="Unavailable">Unavailable</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Available" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+        <div class="col-3">
+            <img src="@Model.GameLink" style="width:50%;border-radius:5px; border:1px solid #bbb9b9" alt="Alternate Text" />
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Update" />
+        <a asp-action="Index" class="btn btn-success"> Back to List </a>
+    </div>
+</form>
+

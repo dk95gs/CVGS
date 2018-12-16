@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "AwaitingApproval";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AwaitingApproval</h2>
+
+<div class="container text-center">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-4">
+                <div class="my-card" style="width: 18rem;">
+
+                    <h5 class="card-title">@item.ChildApplicationUser.UserName</h5>
+
+                    <a asp-area="Customer" asp-route-id="@item.ChildApplicationUser.Id" asp-controller="Members" asp-action="Details" class="btn btn-primary">Details</a>
+                    <a asp-area="Customer" asp-route-ParentName="@item.ParentUserName" asp-route-ChildId="@item.ChildApplicationUser.Id" asp-controller="FriendsFamilyLists" asp-action="ApproveFriend" class="btn btn-secondary">Approve</a>
+                    <a asp-area="Customer" asp-route-from="Approval" asp-route-id="@item.ChildApplicationUser.Id" asp-controller="FriendsFamilyLists" asp-action="Delete" class="btn btn-danger">Delete</a>
+
+                </div>
+            </div>
+
+        }
+    </div>
+</div>

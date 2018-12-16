@@ -1,0 +1,64 @@
+﻿@model CVGS.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">@Model.UserName</h1>
+    <h2>@ViewBag.wlMessage</h2>
+    <a class="btn btn-primary" asp-controller="WishLists" asp-action="GetUserWishList" asp-route-Id="@Model.Id">View WishList</a>
+
+</div>
+
+<form enctype="multipart/form-data" method="post">
+    <input hidden asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="FirstName"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="FirstName" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="LastName"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="LastName" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Gender"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Gender" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="BirthDate"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="BirthDate" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-action="Index" class="btn btn-success"> Back </a>
+    </div>
+</form>
+

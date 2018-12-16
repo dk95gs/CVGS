@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CVGS.Models.Orders>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+
+    <div class="col-4 text-center">
+        <form enctype="multipart/form-data" method="post">
+            <label for="date">Sales Before: </label>
+            <input type="date" name="date" class="form-control" value="" />
+
+            <br />
+            <input type="submit" class="btn btn-primary" value="Select" />
+
+        </form>
+    </div>
+    <div class="col-4 text-center">
+        <h2>Sales Report</h2>
+    </div>
+    <div class="col-4 text-center">
+        <a asp-area="Admin" asp-controller="Reports" asp-action="SalesReport" asp-route-date="@ViewBag.searchDate" class="btn btn-primary">Confirm Report</a>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-12">
+
+        <table class="table table-striped border moveInLeftEffect">
+            <tr class="table-info">
+                <th>
+                    User Name
+                </th>
+                <th>
+                    Total of Cart
+                </th>
+                <th>
+                    Total Tax
+                </th>
+                <th>
+                    Cart+Tax
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.ApplicationUser.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.CartTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.TaxTotal)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(m => item.CartPlusTaxTotal)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

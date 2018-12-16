@@ -1,0 +1,78 @@
+﻿@model IEnumerable<CVGS.Models.Shipments>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Shipments Needing Approval</h1>
+</div>
+<table class="table table-striped border moveInLeftEffect">
+    <tr class="table-info">
+        <th>
+            @Html.DisplayNameFor(m => m.ApplicationUser.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.StreetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.PostalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Province)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Country)
+        </th>
+        <th></th><th></th> <th></th><th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(m => item.ApplicationUser.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.StreetName)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.PostalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.Province)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.Country)
+        </td>
+        <td>
+            <a asp-area="Admin" asp-controller="Shipments" asp-action="OrderItems" asp-route-Id="@item.Id" class="btn btn-primary">Order Items</a>
+        </td>
+        @if (item.isProccessing == false)
+        {
+            <td>
+                <a asp-area="Admin" asp-controller="Shipments" asp-action="StartProcess" asp-route-Id="@item.Id" class="btn btn-primary">Start Processing</a>
+            </td>
+        }
+        @if (item.isProccessing)
+        {
+            <td><input type="button" disabled class="btn btn-warning" value="Processing" /></td>
+            <td>
+                <a asp-area="Admin" asp-controller="Shipments" asp-action="Approve" asp-route-Id="@item.Id" class="btn btn-primary">Approve</a>
+            </td>
+        }
+        else
+        {
+            <td></td>
+        }
+        <td>
+            <a asp-area="Admin" asp-controller="Shipments" asp-action="Reject" asp-route-Id="@item.Id" class="btn btn-danger">Reject</a>
+        </td>
+    </tr>
+    }
+</table>

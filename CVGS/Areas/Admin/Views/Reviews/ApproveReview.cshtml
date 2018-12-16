@@ -1,0 +1,52 @@
+﻿@model CVGS.Models.Reviews
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Approve Review</h2>
+
+    <div class="row">
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label>Title</label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Title" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label>Title</label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Body" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label>Posted By</label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="ApplicationUser.UserName" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label>Posted On</label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="CreationDate" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-action="Index" class="btn btn-success"> Back to List </a>
+        <a asp-route-id="@Model.Id" asp-controller="Reviews" asp-action="ConfirmApproveReview" class="btn btn-info">Approve Review</a>
+        <a asp-route-id="@Model.Id" asp-controller="Reviews" asp-action="DeleteReview" class="btn btn-danger">Delete Review</a>
+    </div>
+
+

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CVGS.Models.Orders>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ReportLayout.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+        <h2>Sales Report</h2>
+        <table class="table table-striped border moveInLeftEffect">
+            <tr class="table-info">
+                <th>
+                    User Name
+                </th>
+                <th>
+                    Total of Cart
+                </th>
+                <th>
+                    Total Tax
+                </th>
+                <th>
+                    Cart+Tax
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.ApplicationUser.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.CartTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.TaxTotal)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(m => item.CartPlusTaxTotal)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

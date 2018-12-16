@@ -1,0 +1,97 @@
+﻿@model CVGS.Models.ShippingMailingAddresses
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Adding New Shipping Address</h2>
+
+<form enctype="multipart/form-data" method="post">
+    <input hidden asp-for="ApplicationUserId" value="temp" class="form-control" />
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="AddressType"></label>
+        </div>
+        <div class="col-5">
+            <select class="form-control" asp-for="AddressType">
+                <option value="Shipping">Shipping</option>
+                <option value="Mailing">Mailing</option>
+            </select>
+        </div>
+        <span asp-validation-for="AddressType" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="StreetName"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="StreetName" class="form-control" />
+        </div>
+        <span asp-validation-for="StreetName" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="HouseNumber"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="HouseNumber" class="form-control" />
+        </div>
+        <span asp-validation-for="HouseNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="PostalCode"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="PostalCode" class="form-control" />
+        </div>
+        <span asp-validation-for="PostalCode" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Province"></label>
+        </div>
+        <div class="col-5">
+            <select asp-for="Province">
+                <option value="ON">Ontario</option>
+                <option value="AL">Alberta</option>
+                <option value="BC">British Columbia</option>
+                <option value="NL">Newfoundland and Labrador</option>
+                <option value="NWT">North West Territories</option>
+                <option value="NS">Nova Scotia</option>
+                <option value="NU">Nunavut</option>
+                <option value="PEI">PEI</option>
+                <option value="QB">Quebec</option>
+                <option value="SA">Saskatchewan</option>
+                <option value="YU">Yukon</option>
+            </select>
+        </div>
+        <span asp-validation-for="Province" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="City"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="City" class="form-control" />
+        </div>
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Country"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="Country" class="form-control" />
+        </div>
+        <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Add" />
+        <a class="btn btn-secondary" asp-area="Customer" asp-controller="ShippingMailingAddresses" asp-action="Index">Back</a>
+    </div>
+</form>
+
+

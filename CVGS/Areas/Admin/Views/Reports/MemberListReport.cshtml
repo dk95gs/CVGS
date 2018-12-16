@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CVGS.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ReportLayout.cshtml";
+}
+<h1>Member List Report</h1>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped border">
+            <tr class="table-info">
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Role
+                </th>
+                <th>
+                    Gender
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(m => item.Role)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Gender)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

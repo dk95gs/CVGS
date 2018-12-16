@@ -1,0 +1,98 @@
+﻿@model CVGS.Models.Games
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Game</h2>
+
+
+<form enctype="multipart/form-data" method="post">
+    <div class="row">
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Title"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Title" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Genre"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Genre" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Description"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Description" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Developer"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Developer" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Publisher"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Publisher" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ESRB_Ratings"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="ESRB_Ratings" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ReleaseDate"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly type="date" asp-for="ReleaseDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Price"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Price" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Available"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Available" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <input type="submit" class="btn btn-danger" value="Delete"/>
+                <a asp-action="Index" class="btn btn-success"> Back to List </a>
+            </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+        <div class="col-3">
+            <img src="@Model.GameLink" style="width:100%;border-radius:5px; border:1px solid #bbb9b9" alt="Alternate Text" />
+        </div>
+    </div>
+</form>
+

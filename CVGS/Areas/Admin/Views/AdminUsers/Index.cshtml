@@ -1,0 +1,98 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<ApplicationUser>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron text-center header">
+    <h1 class="display-4 header-text">Manage Site Members</h1>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-info"> New Employee User  </a>
+    </div>
+</div>
+<br />
+<nav aria-label="AdminUsers Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped border moveInLeftEffect">
+            <tr class="table-info">
+                <th>
+                    User Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.BirthDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Role)
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.BirthDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Role)
+                    </td>
+                    @if (User.IsInRole("Super Admin"))
+                    {
+                        <td>
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+
+                    }
+
+                    @if (!User.IsInRole("Super Admin"))
+                    {
+                        <td><label>Disabled</label></td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<vc:pager paging-list="@Model"/>
+

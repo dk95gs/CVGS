@@ -1,0 +1,77 @@
+﻿@model CVGS.Models.Events
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Game</h2>
+
+
+<form enctype="multipart/form-data" method="post">
+    <div class="row">
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Name" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Details"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Details" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="StartDate"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="StartDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="StartingTime"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="StartingTime" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="EndDate"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="EndDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="EndingTime"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="EndingTime" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Location"></label>
+                </div>
+                <div class="col-8">
+                    <input readonly type="date" asp-for="Location" class="form-control" />
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <input type="submit" class="btn btn-danger" value="Delete" />
+                <a asp-action="Index" class="btn btn-success"> Back to List </a>
+            </div>
+        </div>
+    </div>
+</form>
+
